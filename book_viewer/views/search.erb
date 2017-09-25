@@ -1,0 +1,28 @@
+<h2 class="content-subhead">Search</h2>
+
+<form action="/search" method="get">
+  <input name="query" value="<%= @query %>">
+  <button type="submit">Search</button>
+</form>
+
+<% unless @query.nil? || @results.nil? %>
+  <ul>
+    <% @results.each do |result| %>
+      <li>
+        <strong><%= result[:chap_name] %></strong>
+        <% result[:pgraphs].each do |p_num| %>
+        <ul>
+          <li>
+            <a href='/chapters/<%= result[:chap_num] %>#p<%= p_num %>'>
+              <%= paragraph_content(result[:chap_num], p_num, @query) %>
+            </a>
+          </li>
+        </ul>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <% if @results.empty? %>
+    <p>Sorry, no matches were found.</p>
+  <% end %>
+<% end %>
