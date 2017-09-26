@@ -28,8 +28,8 @@ def chapter_content(chap_num)
   File.read("data/chp#{chap_num}.txt")
 end
 
-get "/chapters/:number" do
-  number = params[:number].to_i
+get "/chapters/:number" do |number|
+  number = number.to_i
   redirect "/" unless (1..@toc.size).cover?(number)
   chap_name = @toc[number - 1]
   @chap_title = "Chapter #{number}: #{chap_name}"
