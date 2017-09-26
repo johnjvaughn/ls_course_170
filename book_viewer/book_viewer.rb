@@ -14,19 +14,18 @@ helpers do
     end.join("\n\n")
   end
 
-  def chapter_content(chap_num)
-    File.read("data/chp#{chap_num}.txt")
-  end
-
-  def paragraph_content(chap_num, p_num, query = nil)
-    pgraph = chapter_content(chap_num).split("\n\n")[p_num - 1]
-    pgraph.gsub(query, "<strong>#{query}</strong>") unless query.nil?
+  def highlight(text, term)
+    text.gsub(term, "<strong>#{term}</strong>")
   end
 end
 
 get "/" do
   @page_title = @book_title
   erb :home
+end
+
+def chapter_content(chap_num)
+  File.read("data/chp#{chap_num}.txt")
 end
 
 get "/chapters/:number" do
@@ -41,10 +40,10 @@ end
 
 def find_query_matches(chap_num)
   content = chapter_content(chap_num)
-  pgraph_matches = []
+  pgraph_matches = {}
   return pgraph_matches unless content.match?(/#{@query}/i)
   content.split("\n\n").each_with_index do |pgraph, index|
-    pgraph_matches << index + 1 if pgraph.match?(/#{@query}/i)
+    pgraph_matches[index + 1] = pgraph if pgraph.match?(/#{@query}/i)
   end
   pgraph_matches
 end
