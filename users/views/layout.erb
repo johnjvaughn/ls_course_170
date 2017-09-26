@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <%= yield %>
+    <ul>
+    <% @user_data.keys.each do |name| %>
+      <% next if @name && @name.to_sym == name %>
+      <li>
+        <a href='/users/<%= name %>'><%= name %></a>
+      </li>
+    <% end %>
+    </ul>
+    <p>
+      There are <%= @user_data.count %> users with a total of <%= count_interests %> interests.
+    </p>
+  </body>
+</html>
