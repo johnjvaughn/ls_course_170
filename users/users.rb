@@ -3,6 +3,11 @@ require "sinatra"
 require "sinatra/reloader"
 require "yaml"
 
+configure do
+  enable :sessions
+  set :session_secret, "NraGu4DABR5m4OrZkarHKfONYXlC1a0tTpu2BXBpalFksQuYCeF5SQKl2fVuwAQL"
+end
+
 before do
   @user_data = YAML.load_file('data/users.yaml')
 end

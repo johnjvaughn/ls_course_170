@@ -3,7 +3,7 @@
     <h2>Editing "<%= @list[:name] %>"</h2>
     <ul>
       <li>
-        <form action='/lists/<%= params[:id] %>/destroy' method='post'>
+        <form action='/lists/<%= @list[:id] %>/destroy' method='post' class='delete'>
           <button type='submit' class='delete'>Delete List</button>
         </form>
       </li>
@@ -11,7 +11,7 @@
   </header>
 </section>
 
-<form action='/lists/<%= params[:id] %>' method='post'>
+<form action='/lists/<%= @list[:id] %>' method='post'>
   <dl>
     <dt>
       <label for='list_name'>Edit the name for this list:</label>
@@ -22,7 +22,7 @@
   </dl>
   <fieldset class='actions'>
     <input type='submit' value='Update'>
-    <a href='/lists/<%= params[:id] %>'>Cancel</a>
+    <a href='/lists/<%= @list[:id] %>'>Cancel</a>
   </fieldset>
 </form>
 
