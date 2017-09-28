@@ -1,8 +1,7 @@
 <form action='/<%= params[:file] %>' method='post'>
   <label for='file_content'>Edit content of <%= params[:file] %>:</label>
   <div>
-    <textarea id='file_content' name='file_content' rows='20', cols='80'><%= @content %>
-    </textarea>
+    <textarea id='file_content' name='file_content' rows='20', cols='80'><%= @content %></textarea>
   </div>
   <button type='submit'>Save Changes</button>
 </form>

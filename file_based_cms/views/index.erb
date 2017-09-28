@@ -1,12 +1,26 @@
-<% if session[:message] %>
-  <%= session.delete(:message) %>
-<% end %>
-
 <ul>
   <% @files.each do |file| %>
     <li>
       <a href='/<%= file %>'><%= file %></a>
       <a href='/<%= file %>/edit'>edit</a>
+      <form class='inline' action='/<%= file %>/destroy' method='post'>
+        <button class='delete' type='submit'>Delete</button>
+      </form>
     </li>
   <% end %>
 </ul>
+
+<p><a href='/new'>New Document</a></p>
+
+<div class='user-status'>
+  <% if session[:username] %>
+    Signed in as <%= session[:username] %>.
+    <form class='inline' action='/users/signout' method='post'>
+      <button type='submit'>Sign Out</button>
+    </form>
+  <% else %>
+    <form class='inline' action='/users/signin' method='get'>
+      <button type='submit'>Sign In</button>
+    </form>
+  <% end %>
+</div>

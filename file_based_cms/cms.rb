@@ -10,37 +10,33 @@ configure do
 end
 
 def data_path
-  if ENV["RACK_ENV"] == "test"
-    File.expand_path("../test/data", __FILE__)
-  else
-    File.expand_path("../data", __FILE__)
-  end
+  dir_path = ENV["RACK_ENV"] == "test" ? "../test/data" : "../data"
+  File.expand_path(dir_path, __FILE__)
 end
 
-def full_path(basename)
+def full_data_path(basename)
   File.join(data_path, basename)
 end
 
 def data_files
-  pattern = File.join(data_path, "*")
-  Dir.glob(pattern).map { |path| File.basename(path) }
+  Dir.glob(full_data_path("*")).map { |path| File.basename(path) }
 end
 
 def message_and_redirect(message, redirect_to = "/")
   session[:message] = message
-  redirect redirect_to
+  redirect redirect_to if redirect_to
 end
 
 def content_by_type(path)
   unless File.file?(path)
-    message_and_redirect("#{File.basename(path)} does NOT exist.")
+    message_and_redirect("#{File.basename(path)} does not exist.")
   end
   content = File.read(path)
 
-  case File.extname(path)
+  case File.extname(path).downcase
   when ".md"
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-    markdown.render(content)
+    erb markdown.render(content)
   else
     headers['Content-Type'] = 'text/plain'
     content
@@ -55,22 +51,66 @@ def content_raw(path)
 end
 
 get "/" do
+  # return erb :signin unless session[:username]
   @files = data_files
   erb :index
 end
 
+get "/new" do
+  erb :new
+end
+
+post "/create" do
+  new_file_name = params[:new_file_name].strip
+  if new_file_name.empty?
+    session[:message] = "A name is required."
+    status 422
+    return erb :new
+  end
+  new_file_path = full_data_path(new_file_name)
+  if File.exist?(new_file_path)
+    session[:message] = "That file already exists."
+    status 422
+    return erb :new
+  end
+  File.write(new_file_path, '')
+  message_and_redirect("#{new_file_name} was created.")
+end
+
 get "/:file" do
-  return nil if params[:file] == 'favicon.ico'
-  content_by_type(full_path(params[:file]))
+  content_by_type(full_data_path(params[:file]))
 end
 
 get "/:file/edit" do
-  @content = content_raw(full_path(params[:file]))
+  @content = content_raw(full_data_path(params[:file]))
   erb :edit
 end
 
 post "/:file" do
-  File.write(full_path(params[:file]), params[:file_content])
+  File.write(full_data_path(params[:file]), params[:file_content])
   message_and_redirect("#{params[:file]} has been updated.")
 end
 
+post "/:file/destroy" do
+  File.delete(full_data_path(params[:file]))
+  message_and_redirect("#{params[:file]} was deleted.")
+end
+
+get "/users/signin" do
+  erb :signin
+end
+
+post "/users/signin" do
+  unless params[:username] == 'admin' && params[:password] == 'secret'
+    session[:message] = "Invalid credentials."
+    status 422
+    return erb :signin
+  end
+  session[:username] = params[:username]
+  message_and_redirect("Welcome!")
+end
+
+post "/users/signout" do
+  session.delete(:username)
+  message_and_redirect("You have been signed out.")
+end
