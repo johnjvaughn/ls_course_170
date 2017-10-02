@@ -8,6 +8,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.8.0)
+    dotenv (2.2.1)
     erubis (2.7.0)
     minitest (5.10.3)
     multi_json (1.12.2)
@@ -34,6 +35,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt!
+  dotenv
   erubis
   minitest
   sinatra (~> 1.4.7)

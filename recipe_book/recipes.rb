@@ -1,12 +1,14 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require "tilt/erubis"
+require 'dotenv/load'
 require "yaml"
 require "bcrypt"
+require "securerandom"
 
 configure do
   enable :sessions
-  set :sessions_secret, 'secret'
+  set :sessions_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
   set :erb, escape_html: true
 end
 
