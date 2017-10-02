@@ -1,0 +1,9 @@
+---
+- :name: Potato chowder
+  :ingredients: "potatoes\r\ncorn\r\nonions\r\ncheese\r\nmilk\r\nbroth"
+  :instructions: "chop vegetables\r\nput in slow cooker\r\ncook 8 hours"
+  :category: dinner
+  :cuisine: American
+  :image: https://upload.wikimedia.org/wikipedia/commons/4/45/Roasted_Corn_and_Potato_Chowder.jpg
+  :public: true
+  :id: 1

@@ -1,0 +1,9 @@
+---
+- :name: Falafel
+  :ingredients: "chick peas\r\nflour\r\nolive oil"
+  :instructions: "mix thoroughly well\r\nform into patties\r\ndeep fry"
+  :cuisine: Mediterranean
+  :image: https://upload.wikimedia.org/wikipedia/commons/0/05/Falafel_balls.jpg
+  :public: true
+  :id: 1
+  :category: dinner

@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Recipe Book</title>
+    
+    <link rel='stylesheet' href='/stylesheets/recipes.css' />
+  </head>
+  <body>
+    <% if session[:message] %>
+      <div class='message'>
+        <%= session.delete(:message) %>
+      </div>
+    <% end %>
+    
+    <%== yield %>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<h2>Edit Recipe</h2>
+
+<form action='/recipes/<%= @recipe[:id] %>/destroy' method='post'>
+  <button class='delete' type='submit'>Delete Recipe</button>
+</form>
+
+<form action='/recipes/<%= @recipe[:id] %>/update' method='post'>
+  <div class='form_input'>
+    <label for='name'>Recipe Name</label>
+    <input type='text' name='name' id='name' value='<%= @recipe[:name] %>' />
+  </div>
+  <div class='form_input'>
+    <label for='ingredients'>Ingredients</label>
+    <textarea name='ingredients' id='ingredients' rows=10 cols=50><%= @recipe[:ingredients] %></textarea>
+  </div>
+  <div class='form_input'>
+    <label for='instructions'>Instructions</label>
+    <textarea name='instructions' id='instructions' rows=10 cols=50><%= @recipe[:instructions] %></textarea>
+  </div>
+  <div class='form_input'>
+    <label for='category'>Category</label>
+    <select name='category' id='category'>
+      <% RECIPE_CATEGORIES.each do |cat| %>
+        <option <%= @recipe[:category] == cat ? 'selected' : '' %> value='<%= cat %>'><%= cat %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class='form_input'>
+    <label for='cuisine'>Cuisine</label>
+    <input type='text' name='cuisine' id='cuisine' value='<%= @recipe[:cuisine] %>' />
+  </div>
+  <div class='form_input'>
+    <label for='image'>Image Link</label>
+    <input type='text' name='image' id='image' value='<%= @recipe[:image] %>' />
+  </div>
+  <div class='form_input'>
+    <input type='radio' name='public' id='public' value='false' <%= @recipe[:public] ? '' : 'checked' %> /><label for='public'>Private</label>
+    <input type='radio' name='public' id='public' value='true' <%= @recipe[:public] ? 'checked' : '' %>/><label for='public'>Public</label>
+  </div>
+  <input type='hidden' name='id' value='<%= @recipe[:id] %>'>
+  <button class='update' type='submit'>Save Recipe</button>
+  <p><a href='/recipes/<%= @recipe[:id] %>'>Cancel</a></p>
+</form>

@@ -1,0 +1,53 @@
+body {
+  background-color: rgb(220, 220, 220);
+  padding: 1em;
+  font-family: sans-serif;
+}
+
+.message {
+  padding: 10px;
+  background-color: yellow;
+}
+
+form.inline {
+  display: inline;
+}
+
+.user-status {
+  font-style: italic;
+  font-size: 0.9em;
+  padding: 10px;
+}
+
+.recipe_info {
+  right: 200px;
+  width: 50%;
+}
+
+.recipe_image {
+  display: inline;
+  width: 50%;
+  left: 200px;
+}
+
+.recipe_public {
+  font-style: italic;
+  font-size: 0.9em;
+  padding: 10px;
+}
+
+.form_input {
+  margin: 5px;
+}
+
+.form_input * {
+  vertical-align: middle;
+}
+
+.recipe_image > img {
+  max-width: 600px;
+}
+
+button.create {
+  margin: 10px;
+}

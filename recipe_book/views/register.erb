@@ -1,0 +1,20 @@
+<div>
+  <form action='/users/register' method='post'>
+    <div>
+      <label for='username'>Username:</label>
+      <input type='text' id='username' name='username' value='<%= params[:username] %>' />
+    </div>
+    <div>
+      <label for='password'>Password:</label>
+      <input type='password' id='password' name='password' value='' />
+    </div>
+    <div>
+      <label for='password'>Retype Password:</label>
+      <input type='password' id='password2' name='password2' value='' />
+    </div>
+    <button type='submit'>Register</button>
+  </form>
+  <form action='/users/signin' method='get'>
+    <button type='submit'>Sign In</button>
+  </form>
+</div>

@@ -1,0 +1,21 @@
+<h2><%= @recipe[:name] %></h2> <a href='/recipes/<%= @recipe[:id] %>/edit'>Edit</a>
+<div>
+  <div class='recipe_info'>
+    <ul>
+      <li><strong>Ingredients:</strong> <pre><%= @recipe[:ingredients] %></pre></li>
+      <li><strong>Instructions:</strong> <pre><%= @recipe[:instructions] %></pre></li>
+      <li><strong>Category:</strong> <pre><%= @recipe[:category] %></pre></li>
+      <li><strong>Cuisine:</strong> <pre><%= @recipe[:cuisine] %></pre></li>
+    </ul>
+  </div>
+
+  <div class='recipe_image'>
+    <img src='<%= @recipe[:image] %>' />
+  </div>
+</div>
+
+<div class='recipe_public'>
+  This recipe is <%= @recipe[:public] ? 'public' : 'private' %>.
+</div>
+
+<p><a href='/'>Home</a></p>

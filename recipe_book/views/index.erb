@@ -1,0 +1,30 @@
+<h2>Recipe Book</h2>
+
+<% if session[:username] %>
+  <div>
+    <ul>
+      <% @recipes.each do |recipe| %>
+        <li><a href='/recipes/<%= recipe[:id] %>'><%= recipe[:name] %></a></li>
+      <% end %>
+    </ul>
+    <a href='/recipes/new'>New Recipe</a>
+  </div>
+<% end %>
+
+<div class='user-status'>
+  <% if session[:username] %>
+    Signed in as <%= session[:username] %>.
+    <form class='inline' action='/users/signout' method='post'>
+      <button type='submit'>Sign Out</button>
+    </form>
+  <% else %>
+    <form class='inline' action='/users/signin' method='get'>
+      <button type='submit'>Sign In</button>
+    </form>
+    <form class='inline' action='/users/register' method='get'>
+      <button type='submit'>Register</button>
+    </form>
+  <% end %>
+</div>
+
+<a href='/public_recipes'>View Public Recipes</a>
