@@ -49,7 +49,7 @@ class CMSTest < Minitest::Test
     create_document("about.md")
     create_document("changes.txt")
 
-    get "/", {}, {"rack.session" => { username: "admin"} }
+    get "/", {}, admin_session
     assert_equal 200, last_response.status
     assert_equal "text/html;charset=utf-8", last_response["Content-Type"]
     assert_includes last_response.body, "<a href='/about.md'>about.md</a>"

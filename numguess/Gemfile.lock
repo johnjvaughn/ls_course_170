@@ -1,17 +1,14 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     backports (3.8.0)
-    bcrypt (3.1.11-x64-mingw32)
     erubis (2.7.0)
-    minitest (5.10.3)
     multi_json (1.12.2)
     rack (1.6.8)
     rack-protection (1.5.3)
       rack
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
-    redcarpet (3.4.0)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -29,15 +26,9 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  bcrypt
   erubis
-  minitest
-  redcarpet
   sinatra (~> 1.4.7)
   sinatra-contrib
-
-RUBY VERSION
-   ruby 2.1.9p490
 
 BUNDLED WITH
    1.16.0.pre.2

@@ -1,0 +1,16 @@
+<form method="post" action="/guess">
+  <p>
+    <label>Bet:
+      <input name="bet" type="text" value="<%= params[:bet] %>" />
+    </label>
+  </p>
+  <p>
+    <button name="guess" value="1">Guess 1</button>
+    <button name="guess" value="2">Guess 2</button>
+    <button name="guess" value="3">Guess 3</button>
+  </p>
+</form>
+
+<% content_for :balance do %>
+  <h3>$<%= session[:balance] %></h3>
+<% end %>

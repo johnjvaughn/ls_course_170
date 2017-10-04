@@ -1,0 +1,9 @@
+<form method="post" action="/">
+  <p>
+    <button type='submit' name="reset">New game</button>
+  </p>
+</form>
+
+<% content_for :balance do %>
+  <h3>$<%= session[:balance] %></h3>
+<% end %>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Guess the Number</title>
+  </head>
+  
+  <body>
+    <h2>Guess the Number</h2>
+    <%== yield_content :balance %>
+
+    <% if session[:message] %>
+      <div class='message'>
+        <%= session.delete(:message) %>
+      </div>
+    <% end %>
+    
+    <%== yield %>
+  </body>
+</html>

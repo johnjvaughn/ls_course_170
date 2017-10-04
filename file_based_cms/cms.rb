@@ -82,7 +82,7 @@ end
 
 get "/" do
   @files = data_files
-  erb :index
+  erb :index, layout: :layout
 end
 
 get "/new" do
